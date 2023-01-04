@@ -1,0 +1,66 @@
+#navigation-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 20px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#navigation-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1400px;
+}
+
+#company-name {
+    font-size: 26px;
+    font-weight: 500;
+    color: white;
+}
+
+#name-color {
+    color: #67B86B;
+    font-weight: bold;
+}
+
+ul {
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+
+    gap: 40px;
+}
+
+li a {
+    position: relative;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+li a:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+li a::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #67B86B;
+    
+    position: absolute;
+    width: 0%;
+    transition: all ease-in-out 200ms;
+}
+
+li a:hover::after {
+    width: 100%;
+  }
