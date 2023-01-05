@@ -63,11 +63,6 @@ function FetchTable() {
     const perPage = useRef(null);
     const textInput = useRef(null);
 
-    const onButtonClick = () => {
-        if (!textInput.current ) return;
-        setSearch(textInput.current.value);
-    };
-
     const handleFilters = () => {
 
     if (textInput.current) {
@@ -115,7 +110,7 @@ function FetchTable() {
 
                 <div id="search-bar">
                     <input type="text" ref={textInput} onChange={handleFilters} placeholder='Hledat...' name="search" id="text-input" />
-                    <button id='search-button' onClick={onButtonClick}><Icon name="search" type="fa"/></button>
+                    
                 </div>
 
             </div>
