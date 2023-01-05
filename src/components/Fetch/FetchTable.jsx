@@ -61,15 +61,29 @@ function FetchTable() {
     const orderByInput = useRef(null);
     const orderInput = useRef(null);
     const perPage = useRef(null);
-
     const textInput = useRef(null);
+
     const onButtonClick = () => {
-        if (!textInput.current || !orderByInput.current || !perPage.current) return;
-        setOrderBy(orderByInput.current.value);
-        setOrder(orderInput.current.value);
-        setperPage(perPage.current.value);
+        if (!textInput.current ) return;
         setSearch(textInput.current.value);
     };
+
+    const handleFilters = () => {
+
+    if (textInput.current) {
+        setSearch(textInput.current.value);
+    }
+    if (perPage.current) {
+        setperPage(perPage.current.value);
+    }
+    if (orderByInput.current) {
+        setOrderBy(orderByInput.current.value);
+    }
+    if (orderInput.current) {
+        setOrder(orderInput.current.value);
+    }
+
+    }
 
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(false);
@@ -87,12 +101,12 @@ function FetchTable() {
             <div id="table-filters">
 
                 <div id='short-select'>
-                    <select name="orderby" ref={orderByInput} id="orderby">
+                    <select name="orderby" ref={orderByInput} onChange={handleFilters} id="orderby">
                         {orderby.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                         ))}
                     </select>
-                    <select name="order" ref={orderInput} id="order">
+                    <select name="order" ref={orderInput} onChange={handleFilters} id="order">
                         {Order.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                         ))}
@@ -100,7 +114,7 @@ function FetchTable() {
                 </div>
 
                 <div id="search-bar">
-                    <input type="text" ref={textInput} placeholder='Hledat...' name="search" id="text-input" />
+                    <input type="text" ref={textInput} onChange={handleFilters} placeholder='Hledat...' name="search" id="text-input" />
                     <button id='search-button' onClick={onButtonClick}><Icon name="search" type="fa"/></button>
                 </div>
 
@@ -138,7 +152,7 @@ function FetchTable() {
 
             <div id="table-footer">
                     <Sites />
-                    <select name="result-sum" ref={perPage} id="result-sum">
+                    <select name="result-sum" ref={perPage} onChange={handleFilters} id="result-sum">
                          {PerPage.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                          ))}

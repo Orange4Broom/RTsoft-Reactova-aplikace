@@ -9,10 +9,10 @@ function Navigation() {
 
                 <ul>
                     <li>
-                        <Link to="/" className='nav-link'><span>Všechny</span></Link>
+                        <Link to="/" className='nav-link' id='All'><span>Všechny</span></Link>
                     </li>
                     <li>
-                        <Link to="/favourites" className='nav-lik'><span>Oblíbené</span></Link>
+                        <Link to="/favourites" className='nav-lik' id='Favourites'><span>Oblíbené</span></Link>
                     </li>
                 </ul>
 
