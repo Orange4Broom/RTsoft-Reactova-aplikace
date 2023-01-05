@@ -1,14 +1,19 @@
+import { Link } from 'react-router-dom';
 import './Navigation.css';
 
 function Navigation() {
     return (
         <nav id="navigation-bar">
             <div id="navigation-content">
-                <a href="./index.html"><h1 id="company-name"><span id="name-color">RT</span>soft</h1></a>
+                <Link to="/"><h1 id="company-name"><span id="name-color">RT</span>soft</h1></Link>
 
                 <ul>
-                    <li><a href="./index.html" className='nav-link'>Všechny</a></li>
-                    <li><a href="#" className='nav-link'>Oblíbené</a></li>
+                    <li>
+                        <Link to="/" className='nav-link'><span>Všechny</span></Link>
+                    </li>
+                    <li>
+                        <Link to="/favourites" className='nav-lik'><span>Oblíbené</span></Link>
+                    </li>
                 </ul>
 
             </div>

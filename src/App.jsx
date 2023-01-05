@@ -1,12 +1,16 @@
-import Navigation from './components/Navigation/Navigation';
-import Content from './components/Content/Content';
+import { Routes, Route } from 'react-router-dom';
+
+import AllPage from "./components/Pages/AllPage";
+import FavouritesPages from "./components/Pages/FavouritesPage";
 
 function App() {
   return (
-      <>
-        <Navigation />
-        <Content />
-      </>
+    <>
+    <Routes>
+      <Route path='/' element={<AllPage />} />
+      <Route path='favourites' element={<FavouritesPages />} />
+    </Routes>
+    </>
   );
 }
 

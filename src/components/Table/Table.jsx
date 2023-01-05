@@ -5,7 +5,9 @@ import './Table.css';
 function Table() {
     return (
         <div id="table-body">
-            <FetchTable />
+            <div id="table-container">
+                <FetchTable />
+            </div>
         </div>
     )
 }

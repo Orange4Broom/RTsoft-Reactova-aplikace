@@ -1,17 +1,23 @@
 #table-body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: start;
 
     width: 100%;
     max-width: 1400px;
-    overflow-x: auto;
 
-    padding-bottom: 10px;
+    min-height: 100vh;
+}
+
+#table-container {
+    width: 100%;
 }
 
 #table {
+    overflow-x: auto;
+}
+
+table {
     margin-top: 1.2rem;
     width: 100%;
     min-width: max-content;
@@ -41,6 +47,11 @@ td {
     padding: 0.6rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
+}
+
+#loader {display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 

@@ -40,16 +40,16 @@ ul {
     gap: 40px;
 }
 
-li a {
+li span {
     position: relative;
     color: rgba(255, 255, 255, 0.7);
 }
 
-li a:hover {
+li span:hover {
     color: rgba(255, 255, 255, 1);
 }
 
-li a::after {
+li span::after {
     content: "";
     display: block;
     height: 3px;
@@ -61,6 +61,6 @@ li a::after {
     transition: all ease-in-out 200ms;
 }
 
-li a:hover::after {
+li span:hover::after {
     width: 100%;
   }

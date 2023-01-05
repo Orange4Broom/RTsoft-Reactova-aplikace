@@ -1,43 +1,74 @@
+import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import { useRef } from 'react';
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+
 import Icon from '../Icon/Icon';
-import '../TableFilters/TableFilters.css';
+import './TableFilters.css';
+import './TableFooter.css';
 
 import Post from "./Post";
+import Pages from "../Sites/Sites";
+import Sites from '../Sites/Sites';
+
+const orderby = [
+    {
+        label: 'Datum',
+        value: 'date'
+    },
+    {
+        label: 'Titulek',
+        value: 'title'
+    },
+    {
+        label: 'Autor',
+        value: 'author'
+    },
+];
+
+const Order = [
+    {
+        label: 'Sestupně',
+        value: 'desc',
+    },
+    {
+        label: 'Vzestupně',
+        value: 'asc'
+    }
+];
+
+const PerPage = [
+    {
+        label: '20',
+        value: '20'
+    },
+    {
+        label: '50',
+        value: '50'
+    },
+    {
+        label: '100',
+        value: '100'
+    }
+]
 
 function FetchTable() {
+    const [search, setSearch] = useState('');
+    const [orderBy, setOrderBy] = useState('date');
+    const [order, setOrder] = useState('desc');
+    const [perpage, setperPage] = useState('20');
 
-    const orderby = [
-        {
-            label: 'Datum',
-            value: 'date'
-        },
-        {
-            label: 'Titulek',
-            value: 'title'
-        },
-        {
-            label: 'Autor',
-            value: 'author'
-        },
-    ];
 
-    const order = [
-        {
-            label: 'Sestupně',
-            value: 'desc',
-        },
-        {
-            label: 'Vzestupně',
-            value: 'asc'
-        }
-    ]
+    const orderByInput = useRef(null);
+    const orderInput = useRef(null);
+    const perPage = useRef(null);
 
     const textInput = useRef(null);
     const onButtonClick = () => {
-        textInput.current.focus();
-        console.log(textInput.current.value);
+        if (!textInput.current || !orderByInput.current || !perPage.current) return;
+        setOrderBy(orderByInput.current.value);
+        setOrder(orderInput.current.value);
+        setperPage(perPage.current.value);
+        setSearch(textInput.current.value);
     };
 
     const [posts, setPosts] = useState([]);
@@ -45,26 +76,24 @@ function FetchTable() {
 
     useEffect(() => {
         setLoading(true);
-        fetch ('https://techcrunch.com/wp-json/wp/v2/posts?context=embed&per_page=20')
+        fetch (`https://techcrunch.com/wp-json/wp/v2/posts?context=embed&per_page=${perpage}&search=${search}&orderby=${orderBy}&order=${order}`)
         .then(res => res.json())
         .then(data => setPosts(data))
         .finally(() => setLoading(false));
-    }, []);
-
-    console.log(posts);
+    }, [search, orderBy, order, perpage]);
 
     return (
         <>
             <div id="table-filters">
 
                 <div id='short-select'>
-                    <select name="orderby" id="orderby">
+                    <select name="orderby" ref={orderByInput} id="orderby">
                         {orderby.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                         ))}
                     </select>
-                    <select name="order" id="order">
-                        {order.map((option, index) => (
+                    <select name="order" ref={orderInput} id="order">
+                        {Order.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                         ))}
                     </select>
@@ -77,29 +106,44 @@ function FetchTable() {
 
             </div>
 
-            {!loading ? (
-                <table id='table'>
+            {!loading && posts ? (
+                <>
 
-                    <thead>
-                    <tr id='headers'>
-                        <th>Id</th>
-                        <th>Titulek</th>
-                        <th>Autor</th>
-                        <th className='date-post'>Datum</th>
-                        <th>Odkaz</th>
-                        <th>Oblíbené</th>
-                    </tr>
-                    </thead>
+                <div id='table'>
+                    <table>
 
-                    <tbody>
-                        {posts.map(post => (
-                        <Post key={post.id} post={post} />
-                        ))}
-                    </tbody>
+                        <thead>
+                        <tr id='headers'>
+                            <th>Id</th>
+                            <th>Titulek</th>
+                            <th>Autor</th>
+                            <th className='date-post'>Datum</th>
+                            <th>Odkaz</th>
+                            <th>Oblíbené</th>
+                        </tr>
+                        </thead>
 
-                </table>
+                        <tbody>
+                            {posts.map(post => (
+                            <Post key={post.id} post={post} />
+                            ))}
+                        </tbody>
 
-            ) : <CircularProgress isIndeterminate color='limegreen' />}
+                    </table>
+                </div>
+                
+                </>
+
+            ) : <div id='loader'><CircularProgress isIndeterminate color='limegreen' /></div>}
+
+            <div id="table-footer">
+                    <Sites />
+                    <select name="result-sum" ref={perPage} id="result-sum">
+                         {PerPage.map((option, index) => (
+                            <option key={index} value={option.value}>{option.label}</option>
+                         ))}
+                    </select>
+                </div>
         </>
     )
 }
