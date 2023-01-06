@@ -6,9 +6,16 @@
 
     gap: 50px;
 
+    height: auto;
     width: 100%;
     max-width: 1400px;
 
     margin-top: auto;
-    padding: 0.6rem;
+    padding: 0.8rem;
+}
+
+@media (max-width: 600px) {
+    #table-footer {
+        flex-direction: column;
+    }
 }

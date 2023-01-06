@@ -56,12 +56,17 @@ function FetchTable() {
     const [order, setOrder] = useState('desc');
     const [perpage, setperPage] = useState('20');
 
+    const [itemOffset, setItemOffset] = useState(0);
 
     const orderByInput = useRef(null);
     const orderInput = useRef(null);
     const perPage = useRef(null);
     const textInput = useRef(null);
 
+    const handlePageClick = (event) => {
+        setItemOffset(event.selected);
+    };
+    
     const handleFilters = () => {
 
     if (textInput.current) {
@@ -80,15 +85,19 @@ function FetchTable() {
     }
 
     const [posts, setPosts] = useState([]);
+    const [responsePageCount, setResponsePageCount] = useState(Number(perpage));
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true);
-        fetch (`https://techcrunch.com/wp-json/wp/v2/posts?context=embed&per_page=${perpage}&search=${search}&orderby=${orderBy}&order=${order}`)
-        .then(res => res.json())
+        fetch (`https://techcrunch.com/wp-json/wp/v2/posts?context=embed&per_page=${perpage}&search=${search}&orderby=${orderBy}&order=${order}&page=${itemOffset + 1}`)
+        .then(res => {
+            setResponsePageCount(Number(res.headers.get('x-wp-totalpages')));
+            return res.json();
+        })
         .then(data => setPosts(data))
         .finally(() => setLoading(false));
-    }, [search, orderBy, order, perpage]);
+    }, [search, orderBy, order, perpage, itemOffset]);
 
     return (
         <>
@@ -146,7 +155,7 @@ function FetchTable() {
 
             <div id="table-footer">
                             
-                            
+                <AppPagination totalPages={responsePageCount} onChange={handlePageClick} />
                             
                     <select name="result-sum" ref={perPage} onChange={handleFilters} id="result-sum">
                          {PerPage.map((option, index) => (

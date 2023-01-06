@@ -1,0 +1,32 @@
+.pagination {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    font-size: 15px;
+}
+
+.pagination .page-num {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5px;
+
+    border-radius: 5px;
+
+    color: aliceblue;
+}
+
+.pagination .page-num:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.selected {
+    width: auto;
+    height: auto;
+
+    background-color: #67B86B;
+}
