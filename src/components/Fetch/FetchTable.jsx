@@ -7,8 +7,7 @@ import './TableFilters.css';
 import './TableFooter.css';
 
 import Post from "./Post";
-import Pages from "../Sites/Sites";
-import Sites from '../Sites/Sites';
+import AppPagination from '../AppPagination/AppPagination';
 
 const orderby = [
     {
@@ -146,7 +145,9 @@ function FetchTable() {
             ) : <div id='loader'><CircularProgress isIndeterminate color='limegreen' /></div>}
 
             <div id="table-footer">
-                    <Sites />
+                            
+                            
+                            
                     <select name="result-sum" ref={perPage} onChange={handleFilters} id="result-sum">
                          {PerPage.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>

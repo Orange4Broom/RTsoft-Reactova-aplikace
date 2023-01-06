@@ -47,27 +47,13 @@ div select {
     border-radius: 5px;
 
     color: rgba(255, 255, 255, 0.8);
+    
 
     background: none;
 }
 
-#search-button {
-    height: 30px;
-    width: 40px;
-
-    border-radius: 15%;
-
-    color: white;
-    font-size: 14px;
-    background: #67B86B;
-}
-
-#search-button:hover {
-    background: #519c55;
-}
-
-#search-button:active {
-    background: #418844;
+#text-input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 600px) {
