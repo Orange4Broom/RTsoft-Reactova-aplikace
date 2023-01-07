@@ -30,11 +30,11 @@ table {
 }
 
 #headers {
-    background: hsl(123, 28%, 51%);
+    background: #49c04f;
 }
 
 th {
-    height: 45px;
+    height: 40px;
     text-align: left;
     color: white;
 
@@ -48,8 +48,8 @@ tr {
 
 
 td {
-    height: 45px;
-    padding: 0.6rem;
+    height: 40px;
+    padding: 0.5rem;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.7);
 }

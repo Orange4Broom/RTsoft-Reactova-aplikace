@@ -28,5 +28,9 @@
     width: auto;
     height: auto;
 
-    background-color: #67B86B;
+    background-color: #49c04f;
+}
+
+.break {
+    color: aliceblue;
 }
