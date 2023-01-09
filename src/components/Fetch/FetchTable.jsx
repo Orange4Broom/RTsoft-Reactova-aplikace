@@ -59,7 +59,7 @@ function FetchTable() {
 
     const orderByInput = useRef(null);
     const orderInput = useRef(null);
-    const perPage = useRef(null);
+    const perPageRef = useRef(null);
     const textInput = useRef(null);
 
     const handlePageClick = (event) => {
@@ -71,8 +71,8 @@ function FetchTable() {
     if (textInput.current) {
         setSearch(textInput.current.value);
     }
-    if (perPage.current) {
-        setperPage(perPage.current.value);
+    if (perPageRef.current) {
+        setperPage(perPageRef.current.value);
     }
     if (orderByInput.current) {
         setOrderBy(orderByInput.current.value);
@@ -193,7 +193,7 @@ function FetchTable() {
                             
                 <AppPagination totalPages={responsePageCount} onChange={handlePageClick} />
                             
-                    <select name="result-sum" ref={perPage} onChange={handleFilters} id="result-sum">
+                    <select name="result-sum" ref={perPageRef} onChange={handleFilters} id="result-sum">
                          {PerPage.map((option, index) => (
                             <option key={index} value={option.value}>{option.label}</option>
                          ))}
