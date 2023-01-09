@@ -45,8 +45,6 @@ tr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.219);
 }
 
-
-
 td {
     height: 40px;
     padding: 0.5rem;
@@ -58,8 +56,6 @@ td {
     justify-content: center;
     width: 100%;
 }
-
-
 
 .title-post {
     max-width: 50ch;
