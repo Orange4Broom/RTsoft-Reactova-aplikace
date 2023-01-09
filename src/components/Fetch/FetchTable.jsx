@@ -2,7 +2,6 @@ import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import { useRef } from 'react';
 
-import Icon from '../Icon/Icon';
 import './TableFilters.css';
 import './TableFooter.css';
 
@@ -99,6 +98,41 @@ function FetchTable() {
         .finally(() => setLoading(false));
     }, [search, orderBy, order, perpage, itemOffset]);
 
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        const storedItems = localStorage.getItem('posts');
+
+    if (storedItems) {
+        setItems(JSON.parse(storedItems));
+    }
+    }, []);
+    
+    function handleClick(post) {
+
+        // Check if the post is already in the list of items
+        const isInList = items.find(item => item.id === post.id);
+    if (isInList) {
+
+        // The post is already in the list, so remove it
+        const updatedItems = items.filter(item => item.id !== post.id);
+        setItems(updatedItems);
+        localStorage.setItem('posts', JSON.stringify(updatedItems));
+    } else {
+
+        // The post is not in the list, so add it
+        const newItem = post;
+        setItems(prevItems => {
+
+        // Add the new item to the list of items
+        const updatedItems = [...prevItems, newItem];
+        localStorage.setItem('posts', JSON.stringify(updatedItems));
+
+        return updatedItems;
+    });
+    }
+    }
+
     return (
         <>
             <div id="table-filters">
@@ -142,7 +176,7 @@ function FetchTable() {
 
                         <tbody>
                             {posts.map(post => (
-                            <Post key={post.id} post={post} />
+                            <Post key={post.id} post={post} handler={handleClick} favouriteItems={items} />
                             ))}
                         </tbody>
 

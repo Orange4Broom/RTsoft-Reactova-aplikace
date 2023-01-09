@@ -1,0 +1,27 @@
+#no-Favourites {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    min-height: 50vh;
+
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#no-Favourites .icon {
+    font-size: 150px;
+    color: #f08080;
+}
+
+#no-Favourites #add-favourites-text {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#no-Favourites #add-favourites-link {
+    color: #ffffffb9;
+    text-decoration: underline;
+}
