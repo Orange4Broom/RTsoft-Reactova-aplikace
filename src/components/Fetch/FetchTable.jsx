@@ -1,12 +1,12 @@
-import { CircularProgress, CircularProgressLabel } from '@chakra-ui/react'
+import { CircularProgress } from '@chakra-ui/react'
 import { useState, useEffect } from 'react';
 import { useRef } from 'react';
 
-import './TableFilters.css';
-import './TableFooter.css';
-
 import Post from "./Post";
 import AppPagination from '../AppPagination/AppPagination';
+
+import './TableFilters.css';
+import './TableFooter.css';
 
 const orderby = [
     {
@@ -97,6 +97,7 @@ function FetchTable() {
         .then(data => setPosts(data))
         .finally(() => setLoading(false));
     }, [search, orderBy, order, perpage, itemOffset]);
+    
 
     const [items, setItems] = useState([]);
 
@@ -107,6 +108,7 @@ function FetchTable() {
         setItems(JSON.parse(storedItems));
     }
     }, []);
+
     
     function handleClick(post) {
 

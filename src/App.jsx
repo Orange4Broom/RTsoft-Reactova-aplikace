@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 
-import AllPage from "./components/Pages/AllPage";
 import FavouritesPages from "./components/Pages/FavouritesPage";
+import AllPage from "./components/Pages/AllPage";
 
 function App() {
   return (

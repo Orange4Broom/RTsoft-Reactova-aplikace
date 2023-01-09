@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import AppPagination from '../AppPagination/AppPagination';
 import getTotalFavouritePages from '../FavouritesPagination/FavouritePagination';
+
 import Post from '../Fetch/Post';
 import Icon from '../Icon/Icon';
 
@@ -66,6 +67,7 @@ function FavouritesContent() {
             <>
             <div id='table'>
               <table>
+
                 <thead>
                   <tr id='headers'>
                     <th>Id</th>
@@ -76,11 +78,13 @@ function FavouritesContent() {
                     <th>Oblíbené</th>
                   </tr>
                 </thead>
+
                 <tbody>
                   {posts && posts.slice(currentPage * Number(perpage), currentPage * Number(perpage) + Number(perpage)).map(post => (
                     <Post key={post.id} post={post} handler={handleRemovePost} favouriteItems={posts}  />
                   ))}
                 </tbody>
+                
               </table>
             </div>
 
@@ -94,11 +98,12 @@ function FavouritesContent() {
                   </select>
               </div>
               </> 
-              ): 
-              <div id='no-Favourites'>
-                <Icon name='shrimp' type='fas' />
-                <p id='add-favourites-text'>Nemáš nic v oblíbených. <br /> Pojď si něco <a href="/" id='add-favourites-link'>přidat</a></p>
-              </div> }
+          ): 
+            <div id='no-Favourites'>
+              <Icon name='shrimp' type='fas' />
+              <p id='add-favourites-text'>Nemáš nic v oblíbených. <br /> Pojď si něco <a href="/" id='add-favourites-link'>přidat</a></p>
+          </div> }
+
           </div>
         </div>
       </div>

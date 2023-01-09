@@ -1,5 +1,4 @@
 import ReactPaginate from "react-paginate"
-import FavouritePagination from "../FavouritesPagination/FavouritePagination";
 import './AppPagination.css';
 
 
