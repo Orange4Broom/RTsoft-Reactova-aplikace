@@ -4,6 +4,8 @@ import { formatDate } from '../../functions/DateFromat';
 import Icon from '../Icon/Icon';
 
 function Post({ post, handler, favouriteItems }) { 
+
+  console.log(post);
   return (
     <tr id='posts'>
 
@@ -15,7 +17,7 @@ function Post({ post, handler, favouriteItems }) {
       </td>
 
       <td className='author-post'>
-        {post.parselyMeta['parsely-author']?.join(', ') ?? 'Žádný autor'}
+        {post.parselyMeta ? post.parselyMeta['parsely-author']?.join(', ') ?? 'Žádný autor' : 'Jméno neuvedeno'}
       </td>
 
       <td className='date-post'>{formatDate(post.date)}</td>
